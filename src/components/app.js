@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
+import Helmet from 'preact-helmet';
 
 import Header from './header';
 import Home from '../routes/home';
@@ -22,13 +23,24 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<div id="app">
-				<Header />
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Profile path="/profile/" user="me" />
-					<Profile path="/profile/:user" />
-				</Router>
+			<div>
+				<Helmet
+					base={{"href": "/"}}
+					titleTemplate="%s | Rocket League Wardrobe"
+					defaultTitle="Rocket League Wardrobe | Show off & share your Rocket League designs!"
+					link={[{rel: "stylesheet", type: "text/css", href: "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css"},
+							{rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family=Montserrat:400,700"}]}
+				/>
+				<div id="rlw-app">
+					<Header />
+					<Router onChange={this.handleRoute}>
+						<Home path="/" />
+						<Profile path="/profile/" user="me" />
+						<Profile path="/profile/:user" />
+					</Router>
+				</div>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
 			</div>
 		);
 	}

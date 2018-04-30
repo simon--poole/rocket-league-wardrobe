@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import Helmet from 'preact-helmet';
 import style from './style';
 
 export default class Profile extends Component {
@@ -31,6 +32,9 @@ export default class Profile extends Component {
 	render({ user }, { time, count }) {
 		return (
 			<div class={style.profile}>
+				<Helmet
+					title="User Profile"
+				/>
 				<h1>Profile: {user}</h1>
 				<p>This is the user profile for a user named { user }.</p>
 
